@@ -1,0 +1,103 @@
+/* ==========================================================================
+   CommuteEase - shared stylesheet | "Pine & Jeepney" palette
+   Pine green (Cordillera pines) + jeepney livery red and marigold.
+   NO JAVASCRIPT: the mobile menu, text size buttons and high-contrast mode
+   are all done with hidden checkboxes/radio buttons + the :checked and :has()
+   selectors. Plain CSS and HTML only.
+   ========================================================================== */
+:root {
+  --pine: #0F3F33;
+  --pine-soft: #1B5646;
+  --marigold: #F5B700;
+  --jeep-red: #C23B2E;
+  --mist: #E8F2EC;
+  --bark: #44554C;
+  --paper: #FFFFFF;
+  --ink: #14211C;
+  --link: #0B5A46;
+  --focus: #A8261B;
+  --callout-bg: #FFF3CC;
+  --radius: 8px;
+  --stripe: repeating-linear-gradient(90deg, #C23B2E 0 28px, #F5B700 28px 56px, #1B5646 56px 84px);
+}
+/* High contrast mode (checkbox in the header) */
+body:has(#contrast-toggle:checked) { --pine:#000000; --pine-soft:#000000; --ink:#000000; --link:#00306B; --mist:#FFFFFF; --bark:#222222; --marigold:#FFD500; --jeep-red:#8A0000; --callout-bg:#FFFFFF; --focus:#8A0000; }
+body:has(#contrast-toggle:checked) .callout,body:has(#contrast-toggle:checked) .card,body:has(#contrast-toggle:checked) .page-intro,body:has(#contrast-toggle:checked) .hero { border:3px solid #000; }
+* { box-sizing: border-box; }
+html { font-size: 100%; scroll-behavior: smooth; }
+/* Text size buttons (radio buttons in the header) */
+html:has(#size-large:checked) { font-size: 112%; }
+html:has(#size-xlarge:checked) { font-size: 125%; }
+body { margin:0; font-family: Verdana, "Segoe UI", Tahoma, sans-serif; line-height:1.7; color:var(--ink); background:var(--paper); }
+h1,h2,h3 { font-family: Georgia, "Times New Roman", serif; color:var(--pine); line-height:1.25; }
+h1 { font-size:2.25rem; margin-top:0; }
+h2 { font-size:1.55rem; }
+h3 { font-size:1.15rem; }
+p,li { max-width:72ch; }
+a { color:var(--link); text-underline-offset:3px; }
+a:hover { text-decoration-thickness:3px; }
+button,input,select,textarea { font:inherit; }
+img,video { max-width:100%; height:auto; }
+/* Ready-to-use styles for your images and videos (see README for the HTML) */
+figure { margin:20px 0; }
+figcaption { font-size:.9rem; color:var(--bark); margin-top:6px; }
+video { display:block; background:var(--pine); border-radius:var(--radius); }
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+header a:focus-visible,header button:focus-visible,header summary:focus-visible,footer a:focus-visible { outline-color:var(--marigold); }
+.skip-link { position:absolute; left:10px; top:-60px; z-index:100; padding:10px 16px; background:var(--marigold); color:var(--pine); font-weight:bold; border-radius:var(--radius); }
+.skip-link:focus { top:10px; }
+header { background:var(--pine); color:var(--paper); }
+header::after,footer::before { content:""; display:block; height:8px; background:var(--stripe); }
+.header-inner { position:relative; max-width:1150px; margin:0 auto; padding:14px 18px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; }
+.logo { color:var(--paper); font-family:Georgia,serif; font-size:1.55rem; font-weight:bold; text-decoration:none; white-space:nowrap; }
+.logo span { color:var(--marigold); }
+/* Visually hidden but still keyboard-focusable and read by screen readers */
+.vh, .menu-check { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; opacity:0; }
+.sr-only { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+/* Menu button is a <label> for the hidden checkbox; shown on small screens only */
+.menu-button { display:none; background:var(--marigold); color:var(--pine); border:0; border-radius:var(--radius); padding:9px 15px; min-height:44px; font-weight:bold; cursor:pointer; align-items:center; }
+.menu-check:focus-visible + .menu-button { outline:3px solid var(--marigold); outline-offset:3px; }
+.menu-check:checked + .menu-button { background:var(--paper); }
+nav { width:100%; }
+nav ul { list-style:none; display:flex; flex-wrap:wrap; gap:4px 13px; padding:0; margin:0; }
+nav a,nav summary { color:var(--paper); display:inline-block; padding:8px 3px; cursor:pointer; font-size:.95rem; }
+nav a[aria-current="page"] { color:var(--marigold); font-weight:bold; text-decoration-thickness:3px; }
+nav details { position:relative; }
+nav details ul { display:block; background:var(--pine); border:1px solid var(--marigold); border-radius:var(--radius); padding:8px 14px; min-width:230px; }
+@media(min-width:801px) { nav details ul { position:absolute; left:0; top:100%; z-index:30; } }
+.tools { width:100%; display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+.tools-label { font-size:.9rem; }
+.size-group { display:inline-flex; gap:6px; }
+.tools label { display:inline-flex; align-items:center; background:var(--mist); color:var(--pine); border:2px solid var(--mist); border-radius:7px; padding:5px 12px; min-height:38px; cursor:pointer; font-weight:bold; }
+.tools input:checked + label { background:var(--marigold); border-color:var(--marigold); }
+.tools input:focus-visible + label { outline:3px solid var(--marigold); outline-offset:3px; }
+main { max-width:1100px; margin:0 auto; padding:28px 18px 54px; }
+section { margin-bottom:34px; }
+.hero,.page-intro { background:var(--mist); border-left:8px solid var(--jeep-red); border-radius:var(--radius); padding:28px; }
+.hero { padding:42px 30px; }
+.hero h1 { font-size:clamp(2.1rem,5vw,3.5rem); }
+.eyebrow { color:var(--bark); font-weight:bold; font-size:.9rem; margin:0 0 6px; }
+.button { display:inline-block; background:var(--marigold); color:var(--pine); padding:12px 20px; min-height:46px; border-radius:8px; font-weight:bold; text-decoration:none; border:2px solid var(--pine); cursor:pointer; }
+.button + .button { margin-left:8px; }
+.button:hover { background:var(--pine); color:var(--marigold); }
+.secondary-button { background:var(--pine); color:var(--paper); border-color:var(--pine); }
+.secondary-button:hover { background:var(--jeep-red); border-color:var(--jeep-red); color:var(--paper); }
+.cards { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; padding:0; }
+.card { background:var(--mist); padding:20px; border-radius:var(--radius); border-top:6px solid var(--jeep-red); }
+.card:nth-child(2) { border-top-color:var(--marigold); }
+.card:nth-child(3) { border-top-color:var(--pine-soft); }
+.card h3 { margin-top:0; }
+.callout { background:var(--callout-bg); color:var(--pine); border-left:6px solid var(--marigold); padding:16px 20px; border-radius:var(--radius); }
+.content-list { padding-left:24px; }
+.content-list li { margin-bottom:10px; }
+.related-links { display:flex; flex-wrap:wrap; gap:12px 28px; }
+.feedback-form { max-width:700px; display:grid; gap:10px; }
+.feedback-form label { font-weight:bold; margin-top:8px; }
+.feedback-form input,.feedback-form select,.feedback-form textarea { width:100%; padding:12px; border:2px solid var(--bark); border-radius:7px; background:var(--paper); color:var(--ink); }
+.status-message { font-weight:bold; color:var(--pine); }
+.small-note { font-size:.9rem; }
+footer { background:var(--pine); color:var(--paper); padding:0 0 25px; }
+.footer-inner { max-width:1100px; margin:0 auto; padding:25px 18px 0; }
+footer a { color:var(--marigold); }
+@media(max-width:800px) { .menu-button { display:inline-flex; } nav { display:none; } .menu-check:checked ~ nav { display:block; } nav ul { flex-direction:column; gap:0; } nav a,nav summary { width:100%; padding:10px 4px; } nav details ul { position:static; padding-left:18px; } h1 { font-size:1.8rem; } .hero { padding:28px 20px; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
